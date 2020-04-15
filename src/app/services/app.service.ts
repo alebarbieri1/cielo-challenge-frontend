@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 export class AppService {
     constructor(private http: HttpClient){}
     getStatement() {
-        return this.http.get('http://www.mocky.io/v2/5e9661c62f00006d000259cc');
+        return this.http.get('https://www.mocky.io/v2/5e9661c62f00006d000259cc');
         /*
         let statements = [
             { date: '18/11/2016', description: 'SAQUE ATM', number: 67210807400, situation: 'Pago', confirmationDate: '18/11/2016', bankData: 'NUBANK Ag 12 CC 0001231234', value: 128714.00 },
