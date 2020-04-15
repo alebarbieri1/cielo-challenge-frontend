@@ -19,8 +19,8 @@
 
 <main role="main" class="container-fluid">
 
-  <div class="title">
-    <h1>Cielo</h1>
+  <div class="header">
+    <img class="mx-auto d-block" src="../assets/images/cielo.png"/>
     <p class="lead">Lançamentos</p>
   </div>
 
@@ -38,16 +38,21 @@
     </thead>
     <tbody>
       <tr *ngFor="let line of statement">
-        <td>{{line.date}}</td>
-        <td>{{line.description}}</td>
-        <td>{{line.number}}</td>
-        <td>{{line.situation}}</td>
-        <td>{{line.confirmationDate}}</td>
-        <td>{{line.bankData}}</td>
-        <td>{{line.value | currency:'BRL':true}} </td>
+        <td>{{line.dataLancamentoContaCorrenteCliente}}</td>
+        <td>{{line.lancamentoContaCorrenteCliente.nomeTipoOperacao}}</td>
+        <td>{{line.lancamentoContaCorrenteCliente.numeroRemessaBanco}}</td>
+        <td>{{line.lancamentoContaCorrenteCliente.nomeSituacaoRemessa}}</td>
+        <td>{{line.dateEfetivaLancamento}}</td>
+        <td>{{line.nomeBanco}} Ag {{line.lancamentoContaCorrenteCliente.dadosDomicilioBancario.numeroAgencia}} CC {{line.lancamentoContaCorrenteCliente.dadosDomicilioBancario.numeroContaCorrente}}</td>
+        <td>{{line.valorLancamentoRemessa | currency:'BRL':'symbol'}} </td>
       </tr>
     </tbody>
   </table>
+
+  <div class="alert alert-primary" *ngIf="loading">Buscando lançamentos...</div>
+  <div class="alert alert-danger" *ngIf="error">Erro ao buscar lançamentos</div>
+  <div class="alert alert-success" *ngIf="success">{{statement.length }} lançamentos encontrados.</div>
+
 </main>
 
 <router-outlet></router-outlet>

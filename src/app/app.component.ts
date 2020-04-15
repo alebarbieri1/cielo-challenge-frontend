@@ -10,13 +10,23 @@ import { AppService } from './services/app.service';
 export class AppComponent {
   title = 'cielo-challenge-app';
   statement = [];
+  loading = false;
+  error = false;
+  success = false;
 
-  constructor(private appService: AppService) {}
+  constructor(private appService: AppService) { }
 
-  ngOnInit(){
+  ngOnInit() {
+    this.loading = true;
     this.appService.getStatement().subscribe((data: any[]) => {
+      this.loading = false;
+      this.success = true;
       console.log(data);
       this.statement = data;
+    }, error => {
+      this.loading = false;
+      this.error = true;
+      console.log(error);
     });
   }
 }
